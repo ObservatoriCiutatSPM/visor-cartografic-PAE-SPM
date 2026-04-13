@@ -50,6 +50,7 @@
         <script src="data/Reductorsdevelocitat_7.js"></script>
         <script src="data/Incidncies_8.js"></script>
 	<script src="data/Immobles.js"></script>
+	<script src="data/Cobertesambamiant_0.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
@@ -1074,6 +1075,113 @@ var bounds_group = new L.featureGroup([]);
         ]});
         bounds_group.addLayer(layer_Incidncies_8);
         map.addLayer(layer_Incidncies_8);
+
+ var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_Cobertesambamiant_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">fid</th>\
+                        <td class="visible-with-data" id="fid">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td class="visible-with-data" id="id">' + (feature.properties['id'] !== null ? autolinker.link(String(feature.properties['id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ref_cadastral</th>\
+                        <td class="visible-with-data" id="ref_cadastral">' + (feature.properties['ref_cadastral'] !== null ? autolinker.link(String(feature.properties['ref_cadastral']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">data_deteccio</th>\
+                        <td class="visible-with-data" id="data_deteccio">' + (feature.properties['data_deteccio'] !== null ? autolinker.link(String(feature.properties['data_deteccio']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">descripcio</th>\
+                        <td class="visible-with-data" id="descripcio">' + (feature.properties['descripcio'] !== null ? autolinker.link(String(feature.properties['descripcio']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">tipus_id</th>\
+                        <td class="visible-with-data" id="tipus_id">' + (feature.properties['tipus_id'] !== null ? autolinker.link(String(feature.properties['tipus_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">adreça</th>\
+                        <td class="visible-with-data" id="adreça">' + (feature.properties['adreça'] !== null ? autolinker.link(String(feature.properties['adreça']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">nom_centre</th>\
+                        <td class="visible-with-data" id="nom_centre">' + (feature.properties['nom_centre'] !== null ? autolinker.link(String(feature.properties['nom_centre']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">entitat_gestora</th>\
+                        <td class="visible-with-data" id="entitat_gestora">' + (feature.properties['entitat_gestora'] !== null ? autolinker.link(String(feature.properties['entitat_gestora']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">origen_id</th>\
+                        <td class="visible-with-data" id="origen_id">' + (feature.properties['origen_id'] !== null ? autolinker.link(String(feature.properties['origen_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">geometria_area_m2</th>\
+                        <td class="visible-with-data" id="geometria_area_m2">' + (feature.properties['geometria_area_m2'] !== null ? autolinker.link(String(feature.properties['geometria_area_m2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">pes_estimat_kg</th>\
+                        <td class="visible-with-data" id="pes_estimat_kg">' + (feature.properties['pes_estimat_kg'] !== null ? autolinker.link(String(feature.properties['pes_estimat_kg']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        var pattern_Cobertesambamiant_0_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#000000',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_Cobertesambamiant_0_0.addTo(map);
+        function style_Cobertesambamiant_0_0() {
+            return {
+                pane: 'pane_Cobertesambamiant_0',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_Cobertesambamiant_0_0,
+                interactive: true,
+            }
+        }
+        function style_Cobertesambamiant_0_1() {
+            return {
+                pane: 'pane_Cobertesambamiant_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Cobertesambamiant_0');
+        map.getPane('pane_Cobertesambamiant_0').style.zIndex = 400;
+        map.getPane('pane_Cobertesambamiant_0').style['mix-blend-mode'] = 'normal';
+        var layer_Cobertesambamiant_0 = new L.geoJson.multiStyle(json_Cobertesambamiant_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Cobertesambamiant_0',
+            layerName: 'layer_Cobertesambamiant_0',
+            pane: 'pane_Cobertesambamiant_0',
+            onEachFeature: pop_Cobertesambamiant_0,
+            styles: [style_Cobertesambamiant_0_0,style_Cobertesambamiant_0_1,]
+        });
+        bounds_group.addLayer(layer_Cobertesambamiant_0);
+        map.addLayer(layer_Cobertesambamiant_0);
         
 
 var baseTree = [
@@ -1089,7 +1197,8 @@ var overlaysTree = [
             {label: 'Guals<br /><table><tr><td style="text-align: center;"><img src="legend/Guals_4_Entradadegaratge0.png" /></td><td>Entrada de garatge</td></tr><tr><td style="text-align: center;"><img src="legend/Guals_4_Entradarecinteprivat1.png" /></td><td>Entrada recinte privat</td></tr></table>', layer: layer_Guals_4},
             {label: 'Equipaments<br /><table><tr><td style="text-align: center;"><img src="legend/Equipaments_3_Aparcamentcamions0.png" /></td><td>Aparcament camions</td></tr><tr><td style="text-align: center;"><img src="legend/Equipaments_3_Benzinera1.png" /></td><td>Benzinera</td></tr><tr><td style="text-align: center;"><img src="legend/Equipaments_3_Deixalleria2.png" /></td><td>Deixalleria</td></tr><tr><td style="text-align: center;"><img src="legend/Equipaments_3_Hotel3.png" /></td><td>Hotel</td></tr><tr><td style="text-align: center;"><img src="legend/Equipaments_3_Restaurant4.png" /></td><td>Restaurant</td></tr></table>', layer: layer_Equipaments_3},
             {label: 'Eixos<br /><table><tr><td style="text-align: center;"><img src="legend/Eixos_1_Eix0.png" /></td><td>Eix</td></tr><tr><td style="text-align: center;"><img src="legend/Eixos_1_Vorera1.png" /></td><td>Vorera</td></tr></table>', layer: layer_Eixos_1},
- {label: '<img src="legend/Plaquessolars_2.png" /> Plaques solars', layer: layer_Plaquessolars_2},	 
+ {label: '<img src="legend/Plaquessolars_2.png" /> Plaques solars', layer: layer_Plaquessolars_2},
+{label: '<img src="legend/Cobertesambamiant_0.png" /> Cobertes amb amiant', layer: layer_Cobertesambamiant_0},	 
  {label: 'Immobles<br /><table><tr><td style="text-align: center;"><img src="legend/Immobles_0_NAU0.png" /></td><td>NAU</td></tr><tr><td style="text-align: center;"><img src="legend/Immobles_0_SOLAR1.png" /></td><td>SOLAR</td></tr></table>', layer: layer_Immobles},      
 	    {label: '<img src="legend/PolgonsIndustrials_0.png" /> Polígons Industrials', layer: layer_PolgonsIndustrials_0},]
         var lay = L.control.layers.tree(baseTree, overlaysTree,{
@@ -1137,13 +1246,13 @@ var overlaysTree = [
 				});
 			}
             // Collapsed/Expanded at Start to apply new height
-            setTimeout(function() {
-                toggleLayerControl.click();
-            }, 10);
-            setTimeout(function() {
-                toggleLayerControl.click();
-            }, 10);
-            // Collapsed touch/small screen
+          setTimeout(function() {
+          toggleLayerControl.click();
+          }, 10);
+          setTimeout(function() {
+          toggleLayerControl.click();
+          }, 10);
+           // Collapsed touch/small screen
             var isSmallScreen = window.innerWidth < 650;
             if (isSmallScreen) {
                 setTimeout(function() {
