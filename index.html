@@ -37,6 +37,22 @@
   </select>
 </div>
 
+<div style="position:absolute; top:10px; left:220px; z-index:1000; background:white; padding:8px; border-radius:5px; box-shadow:0 0 5px rgba(0,0,0,0.3);">
+
+  <div style="font-size:12px; font-weight:bold; margin-bottom:4px;">
+    Està ocupada?
+  </div>
+
+  <select id="filterActivitat">
+    <option value="all">Totes</option>
+    <option value="Ocupada">Ocupada</option>
+    <option value="Buida">Buida</option>
+  </select>
+
+</div>
+
+
+
         <div id="map">
 <div id="LogoObservatori">
   <img src="https://media.githubusercontent.com/media/ObservatoriCiutatSPM/visor-cartografic-PAE-SPM/refs/heads/main/img/Logo.png"
@@ -389,17 +405,31 @@ var bounds_group = new L.featureGroup([]);
         bounds_group.addLayer(layer_Immobles);
         map.addLayer(layer_Immobles);
 	
-function filterImmobles(value) {
+function filterImmobles() {
+
+    var estat = document.getElementById("filterEstat").value;
+    var activitat = document.getElementById("filterActivitat").value;
+
     layer_Immobles.clearLayers();
 
     layer_Immobles.addData(json_Immobles.features.filter(function(feature) {
-        if (value === "all") return true;
-        return feature.properties.ESTAT_CONS === value;
+
+        var fEstat = feature.properties.ESTAT_CONS;
+        var fActivitat = feature.properties.ACTIVITAT;
+
+        var okEstat = (estat === "all" || fEstat === estat);
+        var okActivitat = (activitat === "all" || fActivitat === activitat);
+
+        return okEstat && okActivitat;
     }));
 }
 
-document.getElementById("filterEstat").addEventListener("change", function(e) {
-    filterImmobles(e.target.value);
+document.getElementById("filterEstat").addEventListener("change", function() {
+    filterImmobles();
+});
+
+document.getElementById("filterActivitat").addEventListener("change", function() {
+    filterImmobles();
 });
 
 	var layer_PolgonsIndustrials_0 = new L.geoJson(json_PolgonsIndustrials_0, {
