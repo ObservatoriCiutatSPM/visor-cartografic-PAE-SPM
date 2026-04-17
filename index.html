@@ -22,6 +22,21 @@
         <title>Naus i Solars industrials de Santa Perpètua de Mogoda</title>
     </head>
     <body>
+
+<div style="position:absolute; top:10px; left:70px; z-index:1000; background:white; padding:8px; border-radius:5px; box-shadow:0 0 5px rgba(0,0,0,0.3);">
+  <div style="font-size:12px; font-weight:bold; margin-bottom:4px;">
+    Estat de conservació
+  </div>
+  <select id="filterEstat">
+    <option value="all">Tots</option>
+    <option value="Bo">Bo</option>
+    <option value="Dolent">Dolent</option>
+    <option value="Regular">Regular</option>
+    <option value="Molt bo">Molt bo</option>
+    <option value="No hi ha immoble">No hi ha immoble</option>
+  </select>
+</div>
+
         <div id="map">
 <div id="LogoObservatori">
   <img src="https://media.githubusercontent.com/media/ObservatoriCiutatSPM/visor-cartografic-PAE-SPM/refs/heads/main/img/Logo.png"
@@ -372,7 +387,20 @@ var bounds_group = new L.featureGroup([]);
             style: style_Immobles_0,
         });
         bounds_group.addLayer(layer_Immobles);
-        map.addLayer(layer_Immobles);	
+        map.addLayer(layer_Immobles);
+	
+function filterImmobles(value) {
+    layer_Immobles.clearLayers();
+
+    layer_Immobles.addData(json_Immobles.features.filter(function(feature) {
+        if (value === "all") return true;
+        return feature.properties.ESTAT_CONS === value;
+    }));
+}
+
+document.getElementById("filterEstat").addEventListener("change", function(e) {
+    filterImmobles(e.target.value);
+});
 
 	var layer_PolgonsIndustrials_0 = new L.geoJson(json_PolgonsIndustrials_0, {
             attribution: '',
